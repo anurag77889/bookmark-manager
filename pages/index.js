@@ -8,7 +8,11 @@ export default function Home() {
 
   const handleAddBookmark = () => {
     if (title.trim() && url.trim()) {
-      setBookmarks([...bookmarks, { title, url }]);
+      const formattedUrl =
+        url.startsWith("http://") || url.startsWith("https://")
+          ? url
+          : `https://${url}`;
+      setBookmarks([...bookmarks, { title, formattedUrl }]);
       setTitle("");
       setUrl("");
     }
@@ -34,6 +38,38 @@ export default function Home() {
             onChange={(e) => setTitle(e.target.value)}
             className="px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+          <input
+            type="text"
+            placeholder="Enter bookmark URL"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            className="px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            onClick={handleAddBookmark}
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+          >
+            Add Bookmark
+          </button>
+        </div>
+
+        <div className="mt-8 w-full max-w-md">
+          {bookmarks.map((bookmark, index) => (
+            <div
+              key={index}
+              className="flex justify-between items-center p-4 mb-2 bg-white rounded shadow"
+            >
+              <span className="text-gray-800">{bookmark.title}</span>
+              <a
+                href={bookmark.formattedUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 underline"
+              >
+                Visit
+              </a>
+            </div>
+          ))}
         </div>
       </main>
     </>
