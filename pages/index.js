@@ -18,6 +18,11 @@ export default function Home() {
     }
   };
 
+  const deleteBookmark = (index) => {
+    const updatedBookmarks = bookmarks.filter((_, i) => i !== index);
+    setBookmarks(updatedBookmarks);
+  };
+
   return (
     <>
       <Head>
@@ -68,6 +73,12 @@ export default function Home() {
               >
                 Visit
               </a>
+              <button
+                onClick={() => deleteBookmark(index)}
+                className="text-red-500 hover:text-red-700"
+              >
+                Delete
+              </button>
             </div>
           ))}
         </div>
