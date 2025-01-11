@@ -44,9 +44,11 @@ export default function Home() {
         <meta name="description" content="Manage your bookmarks effortlessly" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex flex-col items-center justify-center h-screen">
-        <h1 className="text-3xl font-bold">Bookmark Manager</h1>
-        <p className="text-lg mt-4">
+      <main className="flex flex-col items-center justify-center h-screen bg-stone-950 text-indigo-400">
+        <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white">
+          Bookmark Manager
+        </h1>
+        <p className="tracking-wide text-gray-500 md:text-lg dark:text-gray-400 mt-4">
           Save and manage your favourite links here!
         </p>
         <div className="mt-8 flex flex-col gap-4 w-full max-w-md">
@@ -55,18 +57,18 @@ export default function Home() {
             placeholder="Enter bookmark title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-white bg-purple-300 text-black placeholder:text-black font-semibold"
           />
           <input
             type="text"
             placeholder="Enter bookmark URL"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-white bg-purple-300 text-black placeholder:text-black font-semibold"
           />
           <button
             onClick={handleAddBookmark}
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+            class="focus:outline-none text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-md px-5 py-2.5 mb-2 dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-900"
           >
             Add Bookmark
           </button>
@@ -76,20 +78,22 @@ export default function Home() {
           {bookmarks.map((bookmark, index) => (
             <div
               key={index}
-              className="flex justify-between items-center p-4 mb-2 bg-white rounded shadow"
+              className="flex justify-between items-center p-4 mb-2 bg-white rounded-2xl shadow"
             >
-              <span className="text-gray-800">{bookmark.title}</span>
+              <span className="text-gray-800 font-thin text-lg">
+                {bookmark.title}
+              </span>
               <a
                 href={bookmark.formattedUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-500 underline"
+                className="text-blue-500 underline font-mono"
               >
                 Visit
               </a>
               <button
                 onClick={() => deleteBookmark(index)}
-                className="text-red-500 hover:text-red-700"
+                className="text-red-500 font-semibold hover:text-red-700"
               >
                 Delete
               </button>
