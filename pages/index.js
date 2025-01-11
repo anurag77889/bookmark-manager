@@ -1,10 +1,23 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
   const [bookmarks, setBookmarks] = useState([]);
+
+  useEffect(() => {
+    const savedBookmarks = JSON.parse(localStorage.getItem("bookmarks"));
+    if (savedBookmarks) {
+      setBookmarks(savedBookmarks);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (bookmarks.length > 0) {
+      localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+    }
+  }, [bookmarks]);
 
   const handleAddBookmark = () => {
     if (title.trim() && url.trim()) {
@@ -21,6 +34,7 @@ export default function Home() {
   const deleteBookmark = (index) => {
     const updatedBookmarks = bookmarks.filter((_, i) => i !== index);
     setBookmarks(updatedBookmarks);
+    localStorage.setItem("bookmarks", JSON.stringify(updatedBookmarks));
   };
 
   return (
