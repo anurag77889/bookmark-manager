@@ -45,10 +45,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex flex-col items-center justify-center h-screen bg-slate-400">
-        <h1 className="text-4xl font-extrabold text-pink-900">
+        <h1 className="text-4xl font-extrabold text-teal-950">
           Bookmark Manager
         </h1>
-        <p className="mt-4 tracking-wide text-pink-900 md:text-lg">
+        <p className="mt-4 tracking-wide text-teal-950 md:text-lg">
           Save and manage your favourite links here!
         </p>
         <div className="mt-8 flex flex-col gap-4 w-full max-w-md">
@@ -80,14 +80,14 @@ export default function Home() {
               key={index}
               className="flex justify-between items-center p-4 mb-2 bg-amber-100 rounded-2xl shadow"
             >
-              <span className="font-medium text-pink-900 text-lg">
+              <span className="font-medium text-teal-950 text-lg">
                 {bookmark.title}
               </span>
               <a
                 href={bookmark.formattedUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-pink-900 underline font-mono font-normal"
+                className="text-blue-500 underline font-mono font-normal"
               >
                 Visit
               </a>
